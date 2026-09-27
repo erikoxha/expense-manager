@@ -1,0 +1,37 @@
+{
+  "results": [
+    {
+      "name": "ZAP AND 1=1 -- ",
+      "status": 201,
+      "stored_name": "ZAP AND 1=1 --",
+      "error": null
+    },
+    {
+      "name": "ZAP AND 1=2 -- ",
+      "status": 201,
+      "stored_name": "ZAP AND 1=2 --",
+      "error": null
+    },
+    {
+      "name": "ZAP AND 1=1 -- ",
+      "status": 400,
+      "stored_name": null,
+      "error": {
+        "name": [
+          "A category with this name and type already exists."
+        ]
+      }
+    },
+    {
+      "name": "ZAP AND 1=2 -- ",
+      "status": 400,
+      "stored_name": null,
+      "error": {
+        "name": [
+          "A category with this name and type already exists."
+        ]
+      }
+    }
+  ],
+  "conclusion": "Both predicates stored as literal names; both duplicates rejected. No boolean-dependent SQL behavior reproduced. See parameter-binding regression tests."
+}

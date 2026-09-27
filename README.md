@@ -1,6 +1,6 @@
 # Ledger — Personal Expense & Budget Manager
 
-A full-stack university Software Quality & Testing project using **Django REST Framework, PostgreSQL, JWT, React, JavaScript, React Router and Recharts**. The application is implemented first; automated testing tools and suites will be added in a separate phase selected by the team.
+A full-stack university Software Quality & Testing project using **Django REST Framework, PostgreSQL, JWT, React, JavaScript, React Router and Recharts**. Backend/API/PostgreSQL tests, property-based tests, k6 load scenarios and bounded ZAP scans are implemented. Frontend/MSW/browser/E2E testing is assigned to the second teammate.
 
 ## Project structure
 
@@ -11,7 +11,7 @@ expense-manager/
 │   ├── config/       # settings, URLs and structured API errors
 │   ├── expenses/     # models, validation, API views, calculation services, migrations, seed command
 │   ├── users/        # Django user model, registration and profile
-│   └── tests/        # reserved, no automated tests yet
+│   └── tests/        # pytest/API/PostgreSQL/property suites
 ├── frontend/
 │   ├── src/
 │   │   ├── components/ # layout, charts, accessible shared controls
@@ -53,7 +53,7 @@ docker compose exec backend python manage.py migrate
 docker compose stop
 ```
 
-PostgreSQL data persists in the `postgres_data` volume. Do not remove the volume unless you intentionally want to erase local data. Host ports bind to loopback only. For a future ZAP container, join the Compose network and target `http://frontend` or `http://backend:8000`; no scan is configured or claimed yet.
+PostgreSQL data persists in the `postgres_data` volume. Do not remove the volume unless you intentionally want to erase local data. Host ports bind to loopback only. Use docker-compose.testing.yml for the separate disposable testing stack; see the testing instructions below.
 
 ## Native development
 
@@ -124,10 +124,10 @@ Authenticated: `GET /api/auth/me/`, `POST /api/auth/logout/`; CRUD at `/api/cate
 
 Lists use 25-record pagination. Transaction filters combine `type`, `category` (ID or name), `start_date`, `end_date`, `min_amount`, `max_amount`, and `search`. Details, payloads, responses and status codes are in [docs/API.md](docs/API.md).
 
-## Testing status and next phase
+## Testing and project submission
 
-No pytest, React Testing Library, Vitest, MSW, Playwright, k6 or ZAP suites are implemented yet. Empty testing locations are deliberate. Build/runtime verification is separate from the future graded testing work. See [verification record](docs/VERIFICATION.md) for what was actually run and any remaining limitations.
+Start with [backend setup](docs/testing/BACKEND.md), [criteria and mappings](docs/testing/PLAN.md), [ISP partitions](docs/testing/ISP.md), [actual results](docs/testing/RESULTS.md), [load testing](load-tests/README.md), [security scans](security/README.md) and [review/presentation walkthrough](docs/testing/REVIEW-WALKTHROUGH.md).
 
-Potential test boundaries: decimal validation, invalid/missing dates, category ownership/type, duplicate names, CRUD authorization, combined filters, token expiry/rotation, inclusive budget periods and three budget states. Frontend services support fetch interception by MSW; components have semantic labels and stable test IDs for core forms, sign-in and budget states.
+GitHub Actions is configured for backend tests and downloadable reports; local execution does not imply a remote CI run. Frontend component/MSW/UI/E2E tests and their reports remain the other teammate's work. The original app-only verification record is historical.
 
-The course submission is not complete until the team implements and documents selected testing techniques, captures results, fixes/retests defects, and produces the final PDF with team index numbers and repository links.
+The final course PDF still needs both students' index numbers, topic, repository links, tools/techniques, test criteria, actual results and limitations, and defect/retest evidence. Combine both testing portions before submission. A separate report repository is optional; sanitized versioned evidence and CI artifacts in this repository are sufficient unless the instructor specifies otherwise.

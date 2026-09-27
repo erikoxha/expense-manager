@@ -3,9 +3,8 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
-    TokenBlacklistView,
 )
-from users.views import RegisterView, MeView
+from users.views import RegisterView, MeView, LogoutView
 from expenses import views
 
 router = DefaultRouter()
@@ -17,7 +16,7 @@ urlpatterns = [
     path("api/auth/register/", RegisterView.as_view()),
     path("api/auth/login/", TokenObtainPairView.as_view()),
     path("api/auth/refresh/", TokenRefreshView.as_view()),
-    path("api/auth/logout/", TokenBlacklistView.as_view()),
+    path("api/auth/logout/", LogoutView.as_view()),
     path("api/auth/me/", MeView.as_view()),
     path("api/statistics/summary/", views.summary),
     path("api/statistics/expenses-by-category/", views.expenses_by_category),

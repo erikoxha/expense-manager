@@ -2,6 +2,9 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
+from rest_framework.exceptions import PermissionDenied
+from rest_framework_simplejwt.serializers import TokenBlacklistSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
 
 User = get_user_model()
 
@@ -40,3 +43,11 @@ class RegisterSerializer(UserSerializer):
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
+
+
+class OwnedTokenBlacklistSerializer(TokenBlacklistSerializer):
+    def validate(self, attrs):
+        refresh = RefreshToken(attrs["refresh"])
+        if str(refresh["user_id"]) != str(self.context["request"].user.id):
+            raise PermissionDenied("This refresh token belongs to another account.")
+        return super().validate(attrs)

@@ -1,0 +1,24 @@
+{
+  "messages": 5152,
+  "response_status_counts": {
+    "200": 424,
+    "0": 32,
+    "201": 82,
+    "400": 4285,
+    "404": 81,
+    "301": 247,
+    "409": 2
+  },
+  "authenticated_scanner_identity_observed": true,
+  "active_scans": [
+    {
+      "reqCount": "5076",
+      "alertCount": "1",
+      "progress": "100",
+      "newAlertCount": "1",
+      "id": "0",
+      "state": "FINISHED"
+    }
+  ],
+  "note": "Successful identity response observed inside ZAP; this is not exhaustive authenticated coverage."
+}
