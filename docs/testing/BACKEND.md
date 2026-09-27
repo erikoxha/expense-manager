@@ -37,3 +37,5 @@ To focus a run use `python scripts/run_backend.py tests/test_auth.py`; the globa
 See [RESULTS.md](RESULTS.md), [DEFECTS.md](DEFECTS.md) and [REVIEW-WALKTHROUGH.md](REVIEW-WALKTHROUGH.md).
 
 The explicit ISP models, Each Choice Coverage scope, boundary representatives and test mappings are in [ISP.md](ISP.md).
+
+For later branch publication and combined verification, see [COMBINED-VERIFICATION.md](COMBINED-VERIFICATION.md).

@@ -29,3 +29,5 @@ A manual browser smoke check after header hardening verified sign-in, a syntheti
 Reviewed machine-readable evidence is committed-ready under evidence/. Full local HTML/JUnit/XML reports are under reports/ (ignored) and included in the local expense-manager-testing-reports.zip deliverable. Backend CI is configured to upload reports for30days after publishing; no remote success is claimed. Retain the final evidence/PDF independently of temporary artifact retention.
 
 The scan runner's final authentication-evidence guard was added after this recorded scan; the recorded hook evidence is valid, but that new failure guard has only received syntax review, not a separate failed-authentication execution. This limitation does not change the retained successful scan evidence.
+
+For later branch publication and combined verification, see [COMBINED-VERIFICATION.md](COMBINED-VERIFICATION.md).

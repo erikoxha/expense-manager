@@ -1,0 +1,41 @@
+
+> expense-manager-frontend@1.0.0 test:coverage
+> vitest run --configLoader native --pool=threads --maxWorkers=1 --coverage
+
+
+ RUN  v5.0.2 <workspace>/work/combined-review/frontend
+      Coverage enabled with v8
+
+
+ Test Files  7 passed (7)
+      Tests  37 passed (37)
+   Start at  23:32:37
+   Duration  6.58s (environment 37%, tests 30%, import 12%, setup 10%, transform 8%, worker 3%)
+
+    Isolate  7 workers spawned · ~354ms startup each (spawn + environment, per file)
+             at least ~2.12s faster with isolate: false — reuses workers across files instead of one per file
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   96.54 |    91.76 |   96.06 |   97.13 |
+ components        |   98.18 |    86.25 |     100 |     100 |
+  UI.jsx           |   96.55 |    83.58 |     100 |     100 | ...53,214,232-239
+ hooks             |     100 |    72.72 |     100 |     100 |
+  useResource.js   |     100 |    57.14 |     100 |     100 | 17-23
+ pages             |   95.23 |    98.19 |   91.07 |   94.91 |
+  Budgets.jsx      |   93.47 |      100 |   91.66 |   93.18 | 46,59,206
+  Categories.jsx   |   95.34 |      100 |   81.81 |   95.12 | 134-162
+  Dashboard.jsx    |    87.5 |       90 |      75 |    87.5 | 128
+  Transactions.jsx |   92.68 |    91.66 |   92.85 |   91.66 | 47-49,200
+ services          |   96.15 |    90.56 |     100 |   98.64 |
+  api.js           |   95.23 |    90.56 |     100 |    98.3 | 72
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 96.54% ( 363/376 )
+Branches     : 91.76% ( 234/255 )
+Functions    : 96.06% ( 122/127 )
+Lines        : 97.13% ( 339/349 )
+================================================================================

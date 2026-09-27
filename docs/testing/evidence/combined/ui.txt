@@ -1,0 +1,15 @@
+
+> expense-manager-e2e@1.0.0 test:ui
+> playwright test ui.spec.js --config=playwright.ui.config.js --grep rendered React
+
+
+Running 2 tests using 1 worker
+
+(node:61847) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:61847) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 ui.spec.js:96:3 › rendered React registration page › shows the real desktop auth content, colors, spacing, and two-column layout (837ms)
+  ✓  2 ui.spec.js:133:3 › rendered React registration page › shows the real mobile auth page without horizontal overflow (116ms)
+
+  2 passed (1.9s)
