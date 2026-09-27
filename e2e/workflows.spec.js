@@ -132,6 +132,21 @@ test("registers, manages finance records, verifies totals and isolates a second 
   await expect(expenseCard).toContainText("€5.00");
   await expect(balanceCard).toContainText("€95.00");
 
+  await page.getByRole("link", { name: "Statistics" }).click();
+  await expect(page.getByRole("heading", { name: "The bigger picture." })).toBeVisible();
+  await expect(page.locator(".badge.green")).toContainText("Balance €95.00");
+  await expect(page.getByRole("img", { name: "Monthly income and expenses. Exact values are listed below." })).toBeVisible();
+  await expect(page.locator(".recharts-surface")).toHaveCount(3);
+  await page.getByText("View chart data").click();
+  const chartData = page.locator(".chart tbody tr");
+  await expect(chartData).toHaveCount(1);
+  await expect(chartData.first()).toContainText("€100.00");
+  await expect(chartData.first()).toContainText("€5.00");
+  await expect(page.getByRole("img", { name: "Expenses by category. Values listed below." })).toBeVisible();
+  await expect(page.getByRole("img", { name: "Income by category. Values listed below." })).toBeVisible();
+  await expect(page.locator(".legend").first()).toContainText(groceries);
+  await expect(page.locator(".legend").last()).toContainText(salary);
+
   await page.getByRole("link", { name: "Budgets" }).click();
   await page.getByRole("button", { name: `Delete ${groceries} budget` }).click();
   await page.getByRole("dialog").getByRole("button", { name: "Delete" }).click();

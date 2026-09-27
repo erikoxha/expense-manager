@@ -37,9 +37,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: frontend-coverage
-          path: |
-            frontend/coverage/index.html
-            frontend/coverage/lcov.info
+          path: frontend/coverage/
           if-no-files-found: warn
           retention-days: 14
 
@@ -59,8 +57,11 @@ jobs:
       - name: Install Chromium
         run: npx playwright install chromium
         working-directory: e2e
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: frontend
       - name: Run browser UI checks
-        run: npx playwright test ui.spec.js
+        run: npm run test:ui
         working-directory: e2e
       - name: Upload browser report and failure evidence
         if: always()
