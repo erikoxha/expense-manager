@@ -1,0 +1,1051 @@
+{
+	"@programName": "ZAP",
+	"@version": "2.17.0",
+	"@generated": "Sat, 26 Sept 2026 18:08:33",
+	"created": "2026-09-26T18:08:33.476580381Z",
+	"insights":[
+		{
+			"level": "Low",
+			"reason": "Exceeded High",
+			"site": "http://frontend",
+			"key": "insight.code.4xx",
+			"description": "Percentage of responses with status code 4xx",
+			"statistic": "85"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://frontend",
+			"key": "insight.code.2xx",
+			"description": "Percentage of responses with status code 2xx",
+			"statistic": "9"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://frontend",
+			"key": "insight.code.3xx",
+			"description": "Percentage of responses with status code 3xx",
+			"statistic": "4"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://frontend",
+			"key": "insight.endpoint.ctype.application/json",
+			"description": "Percentage of endpoints with content type application/json",
+			"statistic": "38"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://frontend",
+			"key": "insight.endpoint.ctype.text/html",
+			"description": "Percentage of endpoints with content type text/html",
+			"statistic": "61"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://frontend",
+			"key": "insight.endpoint.method.GET",
+			"description": "Percentage of endpoints with method GET",
+			"statistic": "87"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://frontend",
+			"key": "insight.endpoint.method.PATCH",
+			"description": "Percentage of endpoints with method PATCH",
+			"statistic": "4"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://frontend",
+			"key": "insight.endpoint.method.POST",
+			"description": "Percentage of endpoints with method POST",
+			"statistic": "4"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://frontend",
+			"key": "insight.endpoint.method.PUT",
+			"description": "Percentage of endpoints with method PUT",
+			"statistic": "4"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://frontend",
+			"key": "insight.endpoint.total",
+			"description": "Count of total endpoints",
+			"statistic": "70"
+		}
+	],
+	"site":[
+		{
+			"@name": "http://frontend",
+			"@host": "frontend",
+			"@port": "80",
+			"@ssl": "false",
+			"alerts": [
+				{
+					"pluginid": "40018",
+					"alertRef": "40018",
+					"alert": "SQL Injection",
+					"name": "SQL Injection",
+					"riskcode": "3",
+					"confidence": "2",
+					"riskdesc": "High (Medium)",
+					"desc": "<p>SQL injection may be possible.</p>",
+					"instances":[
+						{
+							"id": "1063",
+							"uri": "http://frontend/api/categories/",
+							"nodeName": "http:\/\/frontend\/api\/categories\/ ()({name,type})",
+							"method": "POST",
+							"param": "name",
+							"attack": "ZAP AND 1=1 -- ",
+							"evidence": "",
+							"otherinfo": "The page results were successfully manipulated using the boolean conditions [ZAP AND 1=1 -- ] and [ZAP AND 1=2 -- ]\nThe parameter value being modified was stripped from the HTML output for the purposes of the comparison.\nData was returned for the original parameter.\nThe vulnerability was detected by successfully restricting the data originally returned, by manipulating the parameter."
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>Do not trust client side input, even if there is client side validation in place.</p><p>In general, type check all data on the server side.</p><p>If the application uses JDBC, use PreparedStatement or CallableStatement, with parameters passed by '?'</p><p>If the application uses ASP, use ADO Command Objects with strong type checking and parameterized queries.</p><p>If database Stored Procedures can be used, use them.</p><p>Do *not* concatenate strings into queries in the stored procedure, or use 'exec', 'exec immediate', or equivalent functionality!</p><p>Do not create dynamic SQL queries using simple string concatenation.</p><p>Escape all data received from the client.</p><p>Apply an 'allow list' of allowed characters, or a 'deny list' of disallowed characters in user input.</p><p>Apply the principle of least privilege by using the least privileged database user possible.</p><p>In particular, avoid using the 'sa' or 'db-owner' database users. This does not eliminate SQL injection, but minimizes its impact.</p><p>Grant the minimum database access that is necessary for the application.</p>",
+					"otherinfo": "<p>The page results were successfully manipulated using the boolean conditions [ZAP AND 1=1 -- ] and [ZAP AND 1=2 -- ]</p><p>The parameter value being modified was stripped from the HTML output for the purposes of the comparison.</p><p>Data was returned for the original parameter.</p><p>The vulnerability was detected by successfully restricting the data originally returned, by manipulating the parameter.</p>",
+					"reference": "<p>https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html</p>",
+					"cweid": "89",
+					"wascid": "19",
+					"sourceid": "1170"
+				},
+				{
+					"pluginid": "100001",
+					"alertRef": "100001",
+					"alert": "Unexpected Content-Type was returned",
+					"name": "Unexpected Content-Type was returned",
+					"riskcode": "1",
+					"confidence": "3",
+					"riskdesc": "Low (High)",
+					"desc": "<p>A Content-Type of text/html was returned by the server.</p><p>This is not one of the types expected to be returned by an API.</p><p>Raised by the 'Alert on Unexpected Content Types' script</p>",
+					"instances":[
+						{
+							"id": "51",
+							"uri": "http://frontend",
+							"nodeName": "http:\/\/frontend",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "3973",
+							"uri": "http://frontend/",
+							"nodeName": "http:\/\/frontend\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "13",
+							"uri": "http://frontend/2538632955544952837",
+							"nodeName": "http:\/\/frontend\/2538632955544952837",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "14",
+							"uri": "http://frontend/7352631158208085012",
+							"nodeName": "http:\/\/frontend\/7352631158208085012",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "52",
+							"uri": "http://frontend/api",
+							"nodeName": "http:\/\/frontend\/api",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "16",
+							"uri": "http://frontend/api/302341762868826848",
+							"nodeName": "http:\/\/frontend\/api\/302341762868826848",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "61",
+							"uri": "http://frontend/api/auth",
+							"nodeName": "http:\/\/frontend\/api\/auth",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "3978",
+							"uri": "http://frontend/api/auth/",
+							"nodeName": "http:\/\/frontend\/api\/auth\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "18",
+							"uri": "http://frontend/api/auth/3284863636553696260",
+							"nodeName": "http:\/\/frontend\/api\/auth\/3284863636553696260",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "69",
+							"uri": "http://frontend/api/auth/me",
+							"nodeName": "http:\/\/frontend\/api\/auth\/me",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "20",
+							"uri": "http://frontend/api/auth/me/5954277014059567566",
+							"nodeName": "http:\/\/frontend\/api\/auth\/me\/5954277014059567566",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "77",
+							"uri": "http://frontend/api/budgets",
+							"nodeName": "http:\/\/frontend\/api\/budgets",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "85",
+							"uri": "http://frontend/api/budgets/21",
+							"nodeName": "http:\/\/frontend\/api\/budgets\/21",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "24",
+							"uri": "http://frontend/api/budgets/21/8564746328849655663",
+							"nodeName": "http:\/\/frontend\/api\/budgets\/21\/8564746328849655663",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "26",
+							"uri": "http://frontend/api/budgets/588401753626837211/1084764553125576841",
+							"nodeName": "http:\/\/frontend\/api\/budgets\/588401753626837211\/1084764553125576841",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "94",
+							"uri": "http://frontend/api/categories",
+							"nodeName": "http:\/\/frontend\/api\/categories",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "103",
+							"uri": "http://frontend/api/categories/41",
+							"nodeName": "http:\/\/frontend\/api\/categories\/41",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "30",
+							"uri": "http://frontend/api/categories/41/4679172428193314761",
+							"nodeName": "http:\/\/frontend\/api\/categories\/41\/4679172428193314761",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "32",
+							"uri": "http://frontend/api/categories/6914892256170677949/4607907356514985586",
+							"nodeName": "http:\/\/frontend\/api\/categories\/6914892256170677949\/4607907356514985586",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "112",
+							"uri": "http://frontend/api/statistics",
+							"nodeName": "http:\/\/frontend\/api\/statistics",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "3988",
+							"uri": "http://frontend/api/statistics/",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "34",
+							"uri": "http://frontend/api/statistics/7665409358524387253",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/7665409358524387253",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "120",
+							"uri": "http://frontend/api/statistics/budgets",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/budgets",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "36",
+							"uri": "http://frontend/api/statistics/budgets/849423157516535378",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/budgets\/849423157516535378",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "129",
+							"uri": "http://frontend/api/statistics/expenses-by-category",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/expenses-by-category",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "38",
+							"uri": "http://frontend/api/statistics/expenses-by-category/3804019063279567604",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/expenses-by-category\/3804019063279567604",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "137",
+							"uri": "http://frontend/api/statistics/income-by-category",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/income-by-category",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "40",
+							"uri": "http://frontend/api/statistics/income-by-category/9136959509049522555",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/income-by-category\/9136959509049522555",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "146",
+							"uri": "http://frontend/api/statistics/monthly",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/monthly",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "42",
+							"uri": "http://frontend/api/statistics/monthly/8640039662376474877",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/monthly\/8640039662376474877",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "155",
+							"uri": "http://frontend/api/statistics/summary",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/summary",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "44",
+							"uri": "http://frontend/api/statistics/summary/2832825265028030042",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/summary\/2832825265028030042",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "165",
+							"uri": "http://frontend/api/transactions",
+							"nodeName": "http:\/\/frontend\/api\/transactions",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "173",
+							"uri": "http://frontend/api/transactions/21",
+							"nodeName": "http:\/\/frontend\/api\/transactions\/21",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "48",
+							"uri": "http://frontend/api/transactions/21/4774553669662302910",
+							"nodeName": "http:\/\/frontend\/api\/transactions\/21\/4774553669662302910",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "4526",
+							"uri": "http://frontend/api/transactions/21/actuator/health",
+							"nodeName": "http:\/\/frontend\/api\/transactions\/21\/actuator\/health",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "50",
+							"uri": "http://frontend/api/transactions/8431182967788719074/2639333804650084733",
+							"nodeName": "http:\/\/frontend\/api\/transactions\/8431182967788719074\/2639333804650084733",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "2970",
+							"uri": "http://frontend/computeMetadata/v1/",
+							"nodeName": "http:\/\/frontend\/computeMetadata\/v1\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "2968",
+							"uri": "http://frontend/latest/meta-data/",
+							"nodeName": "http:\/\/frontend\/latest\/meta-data\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "2980",
+							"uri": "http://frontend/metadata/instance",
+							"nodeName": "http:\/\/frontend\/metadata\/instance",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "2981",
+							"uri": "http://frontend/metadata/v1",
+							"nodeName": "http:\/\/frontend\/metadata\/v1",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "2972",
+							"uri": "http://frontend/opc/v1/instance/",
+							"nodeName": "http:\/\/frontend\/opc\/v1\/instance\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "2975",
+							"uri": "http://frontend/opc/v2/instance/",
+							"nodeName": "http:\/\/frontend\/opc\/v2\/instance\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						},
+						{
+							"id": "2982",
+							"uri": "http://frontend/openstack/latest/meta_data.json",
+							"nodeName": "http:\/\/frontend\/openstack\/latest\/meta_data.json",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "text/html",
+							"otherinfo": ""
+						}
+					],
+					"count": "44",
+					"systemic": false,
+					"solution": "",
+					"otherinfo": "",
+					"reference": "",
+					"cweid": "-1",
+					"wascid": "-1",
+					"sourceid": "84"
+				},
+				{
+					"pluginid": "100000",
+					"alertRef": "100000-1",
+					"alert": "A Client Error response code was returned by the server",
+					"name": "A Client Error response code was returned by the server",
+					"riskcode": "0",
+					"confidence": "3",
+					"riskdesc": "Informational (High)",
+					"desc": "<p>A response code of 404 was returned by the server.</p><p>This may indicate that the application is failing to handle unexpected input correctly.</p><p>Raised by the 'Alert on HTTP Response Code Error' script</p>",
+					"instances":[
+						{
+							"id": "15",
+							"uri": "http://frontend/api/302341762868826848",
+							"nodeName": "http:\/\/frontend\/api\/302341762868826848",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "60",
+							"uri": "http://frontend/api/auth",
+							"nodeName": "http:\/\/frontend\/api\/auth",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "3977",
+							"uri": "http://frontend/api/auth/",
+							"nodeName": "http:\/\/frontend\/api\/auth\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "17",
+							"uri": "http://frontend/api/auth/3284863636553696260",
+							"nodeName": "http:\/\/frontend\/api\/auth\/3284863636553696260",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "19",
+							"uri": "http://frontend/api/auth/me/5954277014059567566",
+							"nodeName": "http:\/\/frontend\/api\/auth\/me\/5954277014059567566",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "23",
+							"uri": "http://frontend/api/budgets/21/8564746328849655663",
+							"nodeName": "http:\/\/frontend\/api\/budgets\/21\/8564746328849655663",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "22",
+							"uri": "http://frontend/api/budgets/588401753626837211",
+							"nodeName": "http:\/\/frontend\/api\/budgets\/588401753626837211",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "21",
+							"uri": "http://frontend/api/budgets/588401753626837211/",
+							"nodeName": "http:\/\/frontend\/api\/budgets\/588401753626837211\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "25",
+							"uri": "http://frontend/api/budgets/588401753626837211/1084764553125576841",
+							"nodeName": "http:\/\/frontend\/api\/budgets\/588401753626837211\/1084764553125576841",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "29",
+							"uri": "http://frontend/api/categories/41/4679172428193314761",
+							"nodeName": "http:\/\/frontend\/api\/categories\/41\/4679172428193314761",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "28",
+							"uri": "http://frontend/api/categories/6914892256170677949",
+							"nodeName": "http:\/\/frontend\/api\/categories\/6914892256170677949",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "27",
+							"uri": "http://frontend/api/categories/6914892256170677949/",
+							"nodeName": "http:\/\/frontend\/api\/categories\/6914892256170677949\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "31",
+							"uri": "http://frontend/api/categories/6914892256170677949/4607907356514985586",
+							"nodeName": "http:\/\/frontend\/api\/categories\/6914892256170677949\/4607907356514985586",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "111",
+							"uri": "http://frontend/api/statistics",
+							"nodeName": "http:\/\/frontend\/api\/statistics",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "3987",
+							"uri": "http://frontend/api/statistics/",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "33",
+							"uri": "http://frontend/api/statistics/7665409358524387253",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/7665409358524387253",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "35",
+							"uri": "http://frontend/api/statistics/budgets/849423157516535378",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/budgets\/849423157516535378",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "37",
+							"uri": "http://frontend/api/statistics/expenses-by-category/3804019063279567604",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/expenses-by-category\/3804019063279567604",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "39",
+							"uri": "http://frontend/api/statistics/income-by-category/9136959509049522555",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/income-by-category\/9136959509049522555",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "41",
+							"uri": "http://frontend/api/statistics/monthly/8640039662376474877",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/monthly\/8640039662376474877",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "43",
+							"uri": "http://frontend/api/statistics/summary/2832825265028030042",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/summary\/2832825265028030042",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "241",
+							"uri": "http://frontend/api/transactions/?search=Scan&category=41&type=http%3A%2F%2Fwww.google.com%2F&start_date=2026-09-01&end_date=2026-09-30&min_amount=0.01&max_amount=100",
+							"nodeName": "http:\/\/frontend\/api\/transactions\/ (category,end_date,max_amount,min_amount,search,start_date,type)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "47",
+							"uri": "http://frontend/api/transactions/21/4774553669662302910",
+							"nodeName": "http:\/\/frontend\/api\/transactions\/21\/4774553669662302910",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "4525",
+							"uri": "http://frontend/api/transactions/21/actuator/health",
+							"nodeName": "http:\/\/frontend\/api\/transactions\/21\/actuator\/health",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "46",
+							"uri": "http://frontend/api/transactions/8431182967788719074",
+							"nodeName": "http:\/\/frontend\/api\/transactions\/8431182967788719074",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "45",
+							"uri": "http://frontend/api/transactions/8431182967788719074/",
+							"nodeName": "http:\/\/frontend\/api\/transactions\/8431182967788719074\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "49",
+							"uri": "http://frontend/api/transactions/8431182967788719074/2639333804650084733",
+							"nodeName": "http:\/\/frontend\/api\/transactions\/8431182967788719074\/2639333804650084733",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "12",
+							"uri": "http://frontend/api/budgets/21/",
+							"nodeName": "http:\/\/frontend\/api\/budgets\/21\/ ()({category,amount,start_date,end_date})",
+							"method": "PATCH",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "6",
+							"uri": "http://frontend/api/categories/41/",
+							"nodeName": "http:\/\/frontend\/api\/categories\/41\/ ()({name,type})",
+							"method": "PATCH",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "444",
+							"uri": "http://frontend/api/categories/41/",
+							"nodeName": "http:\/\/frontend\/api\/categories\/41\/ ()({name,type})",
+							"method": "PATCH",
+							"param": "",
+							"attack": "",
+							"evidence": "409",
+							"otherinfo": ""
+						},
+						{
+							"id": "9",
+							"uri": "http://frontend/api/transactions/21/",
+							"nodeName": "http:\/\/frontend\/api\/transactions\/21\/ ()({category,type,amount,description,date})",
+							"method": "PATCH",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "10",
+							"uri": "http://frontend/api/budgets/",
+							"nodeName": "http:\/\/frontend\/api\/budgets\/ ()({category,amount,start_date,end_date})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "147",
+							"uri": "http://frontend/api/categories/",
+							"nodeName": "http:\/\/frontend\/api\/categories\/ ()({name,type})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "7",
+							"uri": "http://frontend/api/transactions/",
+							"nodeName": "http:\/\/frontend\/api\/transactions\/ ()({category,type,amount,description,date})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "11",
+							"uri": "http://frontend/api/budgets/21/",
+							"nodeName": "http:\/\/frontend\/api\/budgets\/21\/ ()({category,amount,start_date,end_date})",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "5",
+							"uri": "http://frontend/api/categories/41/",
+							"nodeName": "http:\/\/frontend\/api\/categories\/41\/ ()({name,type})",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "8",
+							"uri": "http://frontend/api/transactions/21/",
+							"nodeName": "http:\/\/frontend\/api\/transactions\/21\/ ()({category,type,amount,description,date})",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						}
+					],
+					"count": "37",
+					"systemic": false,
+					"solution": "",
+					"otherinfo": "",
+					"reference": "",
+					"cweid": "388",
+					"wascid": "20",
+					"sourceid": "42"
+				},
+				{
+					"pluginid": "10049",
+					"alertRef": "10049-1",
+					"alert": "Non-Storable Content",
+					"name": "Non-Storable Content",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Informational (Medium)",
+					"desc": "<p>The response contents are not storable by caching components such as proxy servers. If the response does not contain sensitive, personal or user-specific information, it may benefit from being stored and cached, to improve performance.</p>",
+					"instances":[
+						{
+							"id": "2",
+							"uri": "http://frontend/api/auth/me/",
+							"nodeName": "http:\/\/frontend\/api\/auth\/me\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "no-store",
+							"otherinfo": ""
+						},
+						{
+							"id": "3",
+							"uri": "http://frontend/api/statistics/expenses-by-category/",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/expenses-by-category\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "no-store",
+							"otherinfo": ""
+						},
+						{
+							"id": "0",
+							"uri": "http://frontend/api/statistics/income-by-category/",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/income-by-category\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "no-store",
+							"otherinfo": ""
+						},
+						{
+							"id": "1",
+							"uri": "http://frontend/api/statistics/summary/",
+							"nodeName": "http:\/\/frontend\/api\/statistics\/summary\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "no-store",
+							"otherinfo": ""
+						},
+						{
+							"id": "510",
+							"uri": "http://frontend/api/transactions/",
+							"nodeName": "http:\/\/frontend\/api\/transactions\/ ()({category,type,amount,description,date})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "no-store",
+							"otherinfo": ""
+						}
+					],
+					"count": "5",
+					"systemic": true,
+					"solution": "<p>The content may be marked as storable by ensuring that the following conditions are satisfied:</p><p>The request method must be understood by the cache and defined as being cacheable (\"GET\", \"HEAD\", and \"POST\" are currently defined as cacheable)</p><p>The response status code must be understood by the cache (one of the 1XX, 2XX, 3XX, 4XX, or 5XX response classes are generally understood)</p><p>The \"no-store\" cache directive must not appear in the request or response header fields</p><p>For caching by \"shared\" caches such as \"proxy\" caches, the \"private\" response directive must not appear in the response</p><p>For caching by \"shared\" caches such as \"proxy\" caches, the \"Authorization\" header field must not appear in the request, unless the response explicitly allows it (using one of the \"must-revalidate\", \"public\", or \"s-maxage\" Cache-Control response directives)</p><p>In addition to the conditions above, at least one of the following conditions must also be satisfied by the response:</p><p>It must contain an \"Expires\" header field</p><p>It must contain a \"max-age\" response directive</p><p>For \"shared\" caches such as \"proxy\" caches, it must contain a \"s-maxage\" response directive</p><p>It must contain a \"Cache Control Extension\" that allows it to be cached</p><p>It must have a status code that is defined as cacheable by default (200, 203, 204, 206, 300, 301, 404, 405, 410, 414, 501).</p>",
+					"otherinfo": "",
+					"reference": "<p>https://datatracker.ietf.org/doc/html/rfc7234</p><p>https://datatracker.ietf.org/doc/html/rfc7231</p><p>https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html</p>",
+					"cweid": "524",
+					"wascid": "13",
+					"sourceid": "6"
+				}
+			]
+		}
+	],
+	"sequences":[
+	]
+
+}

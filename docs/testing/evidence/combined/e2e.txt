@@ -1,0 +1,14 @@
+
+> expense-manager-e2e@1.0.0 test:e2e
+> playwright test workflows.spec.js
+
+
+Running 1 test using 1 worker
+
+(node:61879) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:61879) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 workflows.spec.js:41:1 › registers, manages finance records, verifies totals and isolates a second user (4.3s)
+
+  1 passed (4.8s)

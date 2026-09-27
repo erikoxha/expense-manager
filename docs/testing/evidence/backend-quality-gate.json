@@ -1,0 +1,7 @@
+{
+  "statement_percent": 98.94,
+  "branch_percent": 100.0,
+  "statement_minimum": 90,
+  "branch_minimum": 85,
+  "passed": true
+}

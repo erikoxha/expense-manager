@@ -1,0 +1,237 @@
+{
+  "profile": "load",
+  "generated_at": "2026-09-26T18:14:04.282Z",
+  "metrics": {
+    "http_req_receiving": {
+      "type": "trend",
+      "values": {
+        "avg": 0.03830209542453113,
+        "min": 0.007834,
+        "med": 0.031667,
+        "max": 1.157375,
+        "p(90)": 0.065958,
+        "p(95)": 0.07876639999999997
+      }
+    },
+    "http_req_blocked": {
+      "type": "trend",
+      "values": {
+        "med": 0.0015,
+        "max": 0.887292,
+        "p(90)": 0.002959,
+        "p(95)": 0.003791,
+        "avg": 0.002330006427861761,
+        "min": 0.000458
+      }
+    },
+    "http_reqs": {
+      "type": "counter",
+      "values": {
+        "count": 17113,
+        "rate": 183.88820330762954
+      }
+    },
+    "iteration_duration": {
+      "type": "trend",
+      "values": {
+        "avg": 472.21196800122976,
+        "min": 436.035417,
+        "med": 460.043667,
+        "max": 645.504334,
+        "p(90)": 522.6342252000001,
+        "p(95)": 554.1621999999999
+      }
+    },
+    "vus": {
+      "type": "gauge",
+      "values": {
+        "value": 1,
+        "min": 0,
+        "max": 20
+      }
+    },
+    "vus_max": {
+      "type": "gauge",
+      "values": {
+        "min": 20,
+        "max": 20,
+        "value": 20
+      }
+    },
+    "http_req_sending": {
+      "type": "trend",
+      "values": {
+        "max": 1.466875,
+        "p(90)": 0.00975,
+        "p(95)": 0.0126664,
+        "avg": 0.006877399871442683,
+        "min": 0.001666,
+        "med": 0.005167
+      }
+    },
+    "http_req_waiting": {
+      "type": "trend",
+      "values": {
+        "avg": 10.197075365102517,
+        "min": 4.51775,
+        "med": 7.822333,
+        "max": 149.493667,
+        "p(90)": 17.8133998,
+        "p(95)": 22.3643832
+      }
+    },
+    "data_received": {
+      "type": "counter",
+      "values": {
+        "count": 17869558,
+        "rate": 192017.81771293623
+      }
+    },
+    "http_req_duration": {
+      "type": "trend",
+      "values": {
+        "avg": 10.242254860398528,
+        "min": 4.537583,
+        "med": 7.867875,
+        "max": 149.650625,
+        "p(90)": 17.867941600000005,
+        "p(95)": 22.4354668
+      },
+      "thresholds": {
+        "p(95)<500": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_connecting": {
+      "type": "trend",
+      "values": {
+        "avg": 0.00023335557763104074,
+        "min": 0,
+        "med": 0,
+        "max": 0.465708,
+        "p(90)": 0,
+        "p(95)": 0
+      }
+    },
+    "checks": {
+      "type": "rate",
+      "values": {
+        "rate": 1,
+        "passes": 17073,
+        "fails": 0
+      },
+      "thresholds": {
+        "rate>=0.99": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{expected_response:true}": {
+      "type": "trend",
+      "values": {
+        "max": 149.650625,
+        "p(90)": 17.867941600000005,
+        "p(95)": 22.4354668,
+        "avg": 10.242254860398528,
+        "min": 4.537583,
+        "med": 7.867875
+      }
+    },
+    "http_req_tls_handshaking": {
+      "type": "trend",
+      "values": {
+        "p(90)": 0,
+        "p(95)": 0,
+        "avg": 0,
+        "min": 0,
+        "med": 0,
+        "max": 0
+      }
+    },
+    "http_req_failed": {
+      "type": "rate",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 17113
+      },
+      "thresholds": {
+        "rate<0.01": {
+          "ok": true
+        }
+      }
+    },
+    "data_sent": {
+      "type": "counter",
+      "values": {
+        "count": 6852379,
+        "rate": 73632.42346128271
+      }
+    },
+    "iterations": {
+      "type": "counter",
+      "values": {
+        "count": 2439,
+        "rate": 26.208340318314054
+      }
+    }
+  },
+  "root_group": {
+    "path": "",
+    "id": "d41d8cd98f00b204e9800998ecf8427e",
+    "groups": [],
+    "checks": [
+        {
+          "name": "summary is 200 with money strings",
+          "path": "::summary is 200 with money strings",
+          "id": "8dfa21de127d6738391d2ea7ab84b590",
+          "passes": 2439,
+          "fails": 0
+        },
+        {
+          "passes": 2439,
+          "fails": 0,
+          "name": "create persists exact amount",
+          "path": "::create persists exact amount",
+          "id": "35f3ce07746fec29e05b4bd925d0d858"
+        },
+        {
+          "name": "read your own created transaction",
+          "path": "::read your own created transaction",
+          "id": "9294946a8ae4d7880655e48c784c76e3",
+          "passes": 2439,
+          "fails": 0
+        },
+        {
+          "fails": 0,
+          "name": "update preserves exact amount",
+          "path": "::update preserves exact amount",
+          "id": "7ca5e84fe3174d53b1c790144b9a46b0",
+          "passes": 2439
+        },
+        {
+          "fails": 0,
+          "name": "budget reflects this users expense",
+          "path": "::budget reflects this users expense",
+          "id": "6384598e8266a7f268482fe07c6eb033",
+          "passes": 2439
+        },
+        {
+          "name": "delete succeeds",
+          "path": "::delete succeeds",
+          "id": "f0b283978132f762cb43ecb1f10b3961",
+          "passes": 2439,
+          "fails": 0
+        },
+        {
+          "fails": 0,
+          "name": "filter returns a paginated list",
+          "path": "::filter returns a paginated list",
+          "id": "e0d470e8ec250397dd0038b20639ef09",
+          "passes": 2439
+        }
+      ],
+    "name": ""
+  }
+}

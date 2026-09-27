@@ -31,8 +31,13 @@ def budget_progress(budget):
             date__range=(budget.start_date, budget.end_date),
         )
     )
-    remaining = budget.amount - spent
-    percentage = spent / budget.amount * 100 if budget.amount else ZERO
+    return calculate_budget_progress(budget.amount, spent)
+
+
+def calculate_budget_progress(amount, spent):
+    """Calculate a budget state from Decimal inputs; persistence is handled separately."""
+    remaining = amount - spent
+    percentage = spent / amount * 100 if amount else ZERO
     return {
         "spent": str(spent),
         "remaining": str(remaining),

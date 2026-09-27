@@ -1,0 +1,12 @@
+{
+  "backend_commit": "79d2e3d325c2e82784cc387204a03f37bbb7ea97",
+  "frontend_commit": "b1c0d9f90cf82b20981d11bc7a425222c4f8d46d",
+  "local_combined_commit": "cf09df96e55d5ec7e6f5e1f6a9fddf3a9279d403",
+  "local_combined_tree": "e612ce9182ea966fe08d567f59583285f1ef16a4",
+  "backend_tests": 161,
+  "frontend_tests": 37,
+  "combined_real_page_ui_tests": 2,
+  "combined_e2e_tests": 1,
+  "pr1_merged": false,
+  "pr2_merged": false
+}

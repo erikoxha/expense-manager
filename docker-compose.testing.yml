@@ -1,0 +1,31 @@
+name: expense-manager-testing
+services:
+  db:
+    image: postgres:16-alpine
+    env_file: .testing.env
+    ports: ["127.0.0.1:55432:5432"]
+    tmpfs: [/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 2s
+      retries: 30
+  backend:
+    build: ./backend
+    env_file: .testing.env
+    environment:
+      POSTGRES_HOST: db
+      DEBUG: "false"
+      ALLOWED_HOSTS: localhost,127.0.0.1,backend,frontend
+    command: sh -c "python manage.py migrate && gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 2"
+    volumes: ["./backend:/app:ro", "./scripts:/tooling:ro"]
+    ports: ["127.0.0.1:18000:8000"]
+    depends_on:
+      db: {condition: service_healthy}
+  frontend:
+    image: expense-manager-testing-frontend
+    build: ./frontend
+    ports: ["127.0.0.1:18080:80"]
+    depends_on: [backend]
+networks:
+  default:
+    name: expense-manager-testing

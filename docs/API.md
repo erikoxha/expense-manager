@@ -12,6 +12,8 @@ Base URL: `/api`. JSON request and response bodies. Authenticated endpoints requ
 | POST `/auth/logout/` | Access token | `{ "refresh":"…" }` | 200: `{}`; refresh blacklisted |
 | GET `/auth/me/` | Access token | None | 200: `{id,username,email,created_at}` |
 
+Logout requires a valid access token; a refresh token belonging to a different account returns403 and is not revoked. API responses carry Cache-Control: no-store, private.
+
 Registration validates username, email uniqueness and Django password rules. Invalid fields return 400; failed login and expired/invalid JWTs return 401. Anonymous requests are limited to 60/minute (429), using Django's default local cache; use a shared cache for multi-worker production rate limiting.
 
 ## CRUD resources (all authenticated)

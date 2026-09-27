@@ -1,0 +1,11 @@
+[run]
+branch = True
+source = expenses,users,config
+omit =
+    */migrations/*
+    */__init__.py
+[report]
+show_missing = True
+precision = 2
+[html]
+directory = ../reports/backend/coverage-html
