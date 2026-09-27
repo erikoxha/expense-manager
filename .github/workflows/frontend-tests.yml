@@ -1,0 +1,148 @@
+name: Frontend and browser tests
+
+on:
+  push:
+    branches:
+      - main
+      - testing/frontend-integration-e2e
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frontend:
+    name: Frontend tests and coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install frontend dependencies
+        run: npm ci --prefix frontend
+      - name: Build frontend
+        run: npm run build --prefix frontend
+      - name: Run component and MSW tests
+        run: npm test --prefix frontend
+      - name: Measure frontend coverage
+        run: npm run test:coverage --prefix frontend
+      - name: Upload coverage reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-coverage
+          path: |
+            frontend/coverage/index.html
+            frontend/coverage/lcov.info
+          if-no-files-found: warn
+          retention-days: 14
+
+  browser-ui:
+    name: Browser UI and visual checks
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: e2e/package-lock.json
+      - name: Install Playwright dependencies
+        run: npm ci
+        working-directory: e2e
+      - name: Install Chromium
+        run: npx playwright install chromium
+        working-directory: e2e
+      - name: Run browser UI checks
+        run: npx playwright test ui.spec.js
+        working-directory: e2e
+      - name: Upload browser report and failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-ui-report
+          path: |
+            e2e/playwright-report/
+            e2e/test-results/
+          if-no-files-found: warn
+          retention-days: 14
+
+  real-app-e2e:
+    name: Real-app Playwright workflow
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: e2e/package-lock.json
+      - name: Create temporary CI environment
+        run: |
+          python3 - <<'PY'
+          import secrets
+          from pathlib import Path
+
+          values = {
+              "DJANGO_SECRET_KEY": secrets.token_urlsafe(50),
+              "POSTGRES_PASSWORD": secrets.token_urlsafe(32),
+              "POSTGRES_DB": "expenses",
+              "POSTGRES_USER": "expenses",
+              "POSTGRES_HOST": "db",
+              "DEBUG": "false",
+              "ALLOWED_HOSTS": "localhost,127.0.0.1,backend",
+              "CORS_ALLOWED_ORIGINS": "http://localhost:8080,http://127.0.0.1:8080",
+              "SECURE_SSL_REDIRECT": "false",
+              "DEMO_PASSWORD": secrets.token_urlsafe(24),
+          }
+          Path(".env").write_text("".join(f"{key}={value}\n" for key, value in values.items()))
+          PY
+      - name: Start disposable PostgreSQL, Django and frontend services
+        run: docker compose up --build --detach
+      - name: Wait for the app
+        run: |
+          python3 - <<'PY'
+          import time
+          import urllib.error
+          import urllib.request
+
+          for attempt in range(60):
+              try:
+                  with urllib.request.urlopen("http://127.0.0.1:8080", timeout=2) as response:
+                      if response.status == 200:
+                          break
+              except (OSError, urllib.error.URLError):
+                  time.sleep(2)
+          else:
+              raise SystemExit("The app did not become ready within 120 seconds.")
+          PY
+      - name: Install Playwright dependencies
+        run: npm ci
+        working-directory: e2e
+      - name: Install Chromium
+        run: npx playwright install chromium
+        working-directory: e2e
+      - name: Run the real-app workflow
+        run: npx playwright test workflows.spec.js
+        working-directory: e2e
+        env:
+          PLAYWRIGHT_BASE_URL: http://127.0.0.1:8080
+      - name: Upload Playwright report and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-app-e2e-report
+          path: |
+            e2e/playwright-report/
+            e2e/test-results/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Stop disposable services
+        if: always()
+        run: docker compose down --remove-orphans
