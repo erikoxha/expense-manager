@@ -1,5 +1,8 @@
 # Frontend tests
 
+> Final status, 28 September 2026: both contributions are merged. All four jobs passed on published main `f07a840a5ecc52f0f90dbd79d9fefdcd4f55c3fb`. The joint PDF is complete; see [final report and evidence](../submission/README.md). Any statements below about unpublished changes, pending CI or pre-merge steps describe the historical stage when that evidence was recorded. Course upload remains the team's responsibility.
+
+
 ## What each layer proves
 
 - **Components (Vitest + React Testing Library):** checks accessible labels and field errors, budget state text, and the visual progress cap. These run in jsdom; they do not prove browser layout.

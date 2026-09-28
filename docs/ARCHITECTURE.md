@@ -23,4 +23,4 @@ Private-object misses return 404 rather than confirming another user's object ex
 
 ## Deferred scope
 
-No scheduled payments, bank integrations, email verification, password reset, currency conversion or account deletion were requested. Testing framework choice, automated suites, performance thresholds, security scans and final university PDF are a subsequent phase.
+No scheduled payments, bank integrations, email verification, password reset, currency conversion or account deletion were requested. The testing phase is complete: see [testing overview](testing/README.md) and [final joint submission](submission/README.md) for implemented suites, coverage gates, performance/security evidence and the PDF.

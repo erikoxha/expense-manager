@@ -1,5 +1,8 @@
 # Combined verification and submission status
 
+> Final status, 28 September 2026: both contributions are merged. All four jobs passed on published main `f07a840a5ecc52f0f90dbd79d9fefdcd4f55c3fb`. The joint PDF is complete; see [final report and evidence](../submission/README.md). Any statements below about unpublished changes, pending CI or pre-merge steps describe the historical stage when that evidence was recorded. Course upload remains the team's responsibility.
+
+
 Verified locally on27 September2026, Europe/Skopje. Backend PR: https://github.com/erikoxha/expense-manager/pull/2 (79d2e3d325c2e82784cc387204a03f37bbb7ea97). Frontend PR: https://github.com/erikoxha/expense-manager/pull/1 (b1c0d9f90cf82b20981d11bc7a425222c4f8d46d). Both PRs remain open and unmerged.
 
 A separate local checkout combined those exact parents without conflicts. Local merge commit: cf09df96e55d5ec7e6f5e1f6a9fddf3a9279d403; tree: e612ce9182ea966fe08d567f59583285f1ef16a4. That local merge commit is not published; reproduce the tested content by combining the two specified parent commits. The later backend documentation-only publication does not alter this tested application/test tree.

@@ -1,3 +1,11 @@
-# Frontend testing overview
+# Testing overview
 
-See [frontend test layers and requirement mapping](testing/frontend.md) for the component/MSW suite, coverage scope and student walkthrough. See [real-app browser E2E setup](testing/e2e.md) for the Playwright workflow and local environment requirements.
+- [Backend setup and coverage](BACKEND.md)
+- [Requirement mappings and criteria](PLAN.md)
+- [Input space partitioning](ISP.md)
+- [Frontend component, MSW and UI testing](frontend.md)
+- [Real-app E2E setup](e2e.md)
+- [Defects and retests](DEFECTS.md)
+- [Final joint report and passing merged-code CI](../submission/README.md)
+
+Historical reports retain their original execution context. Use the final joint report for the completed contribution and submission status.

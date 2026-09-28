@@ -1,5 +1,8 @@
 # Real-app browser E2E
 
+> Final status, 28 September 2026: both contributions are merged. All four jobs passed on published main `f07a840a5ecc52f0f90dbd79d9fefdcd4f55c3fb`. The joint PDF is complete; see [final report and evidence](../submission/README.md). Any statements below about unpublished changes, pending CI or pre-merge steps describe the historical stage when that evidence was recorded. Course upload remains the team's responsibility.
+
+
 These Playwright tests use the documented app, not API mocks. They are separate from Vitest/MSW so they can verify persisted results across React, Django, and PostgreSQL.
 
 ## Prerequisites
