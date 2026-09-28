@@ -1,6 +1,6 @@
 # Ledger — Personal Expense & Budget Manager
 
-A full-stack university Software Quality & Testing project using **Django REST Framework, PostgreSQL, JWT, React, JavaScript, React Router and Recharts**. Backend/API/PostgreSQL tests, property-based tests, k6 load scenarios and bounded ZAP scans are implemented. Frontend/MSW/browser/E2E testing is assigned to the second teammate.
+A full-stack university Software Quality & Testing project using **Django REST Framework, PostgreSQL, JWT, React, JavaScript, React Router and Recharts**. Backend/API/PostgreSQL tests, property-based tests, k6 load scenarios and bounded ZAP scans are implemented. Frontend component/MSW/browser/E2E tests are implemented and verified together with the backend contribution.
 
 ## Project structure
 
@@ -18,7 +18,7 @@ expense-manager/
 │   │   ├── pages/      # authentication, dashboard and CRUD workflows
 │   │   ├── services/   # API transport, token refresh, resource services
 │   │   ├── hooks/      # authentication and loading/error state
-│   │   └── tests/      # reserved
+│   │   └── tests/      # component and MSW integration tests
 │   └── ...
 ├── e2e/
 ├── load-tests/
@@ -128,6 +128,6 @@ Lists use 25-record pagination. Transaction filters combine `type`, `category` (
 
 Start with [backend setup](docs/testing/BACKEND.md), [criteria and mappings](docs/testing/PLAN.md), [ISP partitions](docs/testing/ISP.md), [actual results](docs/testing/RESULTS.md), [load testing](load-tests/README.md), [security scans](security/README.md) and [review/presentation walkthrough](docs/testing/REVIEW-WALKTHROUGH.md).
 
-GitHub Actions is configured for backend tests and downloadable reports; local execution does not imply a remote CI run. Frontend component/MSW/UI/E2E tests and their reports remain the other teammate's work. The original app-only verification record is historical.
+Both contributions are merged. Final merged-code CI passed 161 backend tests, 37 frontend tests, 4 UI checks and 1 real-app E2E workflow, plus the frontend production build. See [frontend testing](docs/testing/frontend.md) and the [joint submission PDF and verified CI links](docs/submission/README.md).
 
-The final course PDF still needs both students' index numbers, topic, repository links, tools/techniques, test criteria, actual results and limitations, and defect/retest evidence. Combine both testing portions before submission. A separate report repository is optional; sanitized versioned evidence and CI artifacts in this repository are sufficient unless the instructor specifies otherwise.
+The final PDF includes both students' names/index numbers, the topic, repository links, methods, criteria including ISP, results, defects/retests and limitations. Historical load/security runs remain labeled historical. One team member must upload the PDF to the course assignment and confirm receipt; repository publication is not course submission.
