@@ -4,7 +4,7 @@
 
 Erjon Koxha (231509) and Bora Alili (231504).
 
-[Final 14-page submission PDF](Software_Quality_Testing_Joint_Submission.pdf)
+[Final 15-page submission PDF](Software_Quality_Testing_Joint_Submission.pdf)
 
 Both contributions were reviewed together and merged through PR #1 and PR #2. Tested code: `8907e78c8aad3c5b1581c5767f21371c3f507e2c`. This publication changes documentation only.
 
@@ -15,3 +15,5 @@ Both contributions were reviewed together and merged through PR #1 and PR #2. Te
 The PDF distinguishes historical load/security measurements from final merged-code CI and records residual security findings and scope limits. It supersedes outdated contribution-summary counts. AI assistance is disclosed in the report.
 
 One team member must upload the PDF to the course assignment by 28 September 2026 at 23:59 Europe/Skopje, following the supplied notice, and confirm the receipt. The agent has not submitted the course assignment or project application. Confirm eligibility and application status separately.
+
+The PDF was revised after annotation review: academic wording, a terminology glossary, clearer ISP/security explanations and descriptive evidence links. Recorded test results and scope limitations are unchanged.
